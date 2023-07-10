@@ -14,7 +14,7 @@ const routes = [
   },
   {
     name: "Invoices",
-    href: "/sales/invoices",
+    href: "/sales/invoices/random-id",
   },
   {
     name: "Customers",
