@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Sidenav() {
   return (
     <section className="border-r border-r-gray-100 bg-gray-50 px-4">
@@ -43,32 +45,37 @@ export default function Sidenav() {
       </div>
       <div className="flex flex-col">
         <div className="flex flex-col font-bold text-gray-800">
-          <a
-            className="my-1 py-1 px-2 pr-16 text-[length:14px] "
+          <Link
+            className="my-1 py-1 px-2 pr-0 text-[length:14px] whitespace-nowrap text-ellipsis overflow-hidden "
             href="/dashboard">
             Dashboard
-          </a>
-          <a
-            className="my-1 py-1 px-2 pr-16 text-[length:14px] "
+          </Link>
+          <Link
+            className="my-1 py-1 px-2 pr-0 text-[length:14px] whitespace-nowrap text-ellipsis overflow-hidden "
             href="/accounts">
-            Accounts
-          </a>
-          <a
-            className="my-1 py-1 px-2 pr-16 text-[length:14px] rounded-md bg-gray-100"
+            Team
+          </Link>
+          <Link
+            className="my-1 py-1 px-2 pr-0 text-[length:14px] whitespace-nowrap text-ellipsis overflow-hidden rounded-md bg-gray-100"
             href="/sales"
             aria-current="page">
-            Sales
-          </a>
-          <a
-            className="my-1 py-1 px-2 pr-16 text-[length:14px] "
+            Talent Pool
+          </Link>
+          <Link
+            className="my-1 py-1 px-2 pr-0 text-[length:14px] whitespace-nowrap text-ellipsis overflow-hidden "
             href="/expenses">
-            Expenses
-          </a>
-          <a
-            className="my-1 py-1 px-2 pr-16 text-[length:14px] "
+            Projects
+          </Link>
+          <Link
+            className="my-1 py-1 px-2 pr-0 text-[length:14px] whitespace-nowrap text-ellipsis overflow-hidden "
             href="/reports">
-            Reports
-          </a>
+            Jobs
+          </Link>
+          <Link
+            className="my-1 py-1 px-2 pr-0 text-[length:14px] whitespace-nowrap text-ellipsis overflow-hidden "
+            href="/reports">
+            User
+          </Link>
           <a
             href="https://github.com/MiguelHG2351/nextjs-research"
             className="my-1 flex gap-1 py-1 px-2 pr-16 text-[length:14px]">

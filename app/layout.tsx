@@ -1,7 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Sidenav from "@/components/Sidenav";
+import Sidenav from "@/app/components/Sidenav";
+import { Providers } from "@/lib/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,13 +17,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen flex bg-white" style={inter.style}>
-        <div className="grid grid-cols-[20%_auto] w-full flex-1">
-          <Sidenav />
-          {children}
-        </div>
-      </body>
-    </html>
+    <Providers>
+      <html lang="en">
+        <body className="min-h-screen flex bg-white" style={inter.style}>
+          <div className="grid grid-cols-[20%_auto] w-full flex-1">
+            <Sidenav />
+            {children}
+          </div>
+        </body>
+      </html>
+    </Providers>
   );
 }
