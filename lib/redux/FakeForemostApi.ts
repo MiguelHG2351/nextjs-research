@@ -1,5 +1,6 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 const baseUrl = process.env.API_BASE_URL
+console.log(baseUrl)
 
 export const FakeForemostApi = createApi({
   reducerPath: 'FakeForemosApi',
