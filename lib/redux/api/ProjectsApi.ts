@@ -12,7 +12,9 @@ export const ProjectsApi = FakeForemostApi.injectEndpoints({
       },
     }),
   }),
-  overrideExisting: module.hot?.status() === "apply",
+  // https://github.com/reduxjs/redux-toolkit/issues/3157
+   // @ts-ignore
+  overrideExisting: module?.hot?.status() === "apply",
 })
 
 export const { useGetProjectsQuery } = ProjectsApi
