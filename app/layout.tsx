@@ -20,7 +20,7 @@ export default function RootLayout({
     <Providers>
       <html lang="en">
         <body className="min-h-screen flex bg-white" style={inter.style}>
-          <div className="grid grid-cols-[20%_auto] w-full flex-1">
+          <div className="grid grid-cols-[200px_auto] w-full flex-1">
             <Sidenav />
             {children}
           </div>
