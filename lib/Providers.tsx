@@ -1,22 +1,20 @@
 'use client'
 
 /* Core */
-import { Provider } from 'react-redux'
+import { Provider as ReduxProvider } from 'react-redux'
 import { SessionProvider } from 'next-auth/react'
 
 /* Instruments */
 import { store } from '@/lib/redux'
 
-type Props = React.PropsWithChildren<{
-  session: any
-}>
+type Props = React.PropsWithChildren<{}>
 
 export const Providers = (props: Props) => {
   return (
-    <SessionProvider session={props.session}>
-      <Provider store={store}>
+    <SessionProvider>
+      <ReduxProvider store={store}>
         {props.children}
-      </Provider>
+      </ReduxProvider>
     </SessionProvider>
   )
 }
