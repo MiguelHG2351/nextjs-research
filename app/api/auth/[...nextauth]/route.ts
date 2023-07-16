@@ -1,7 +1,14 @@
 import NextAuth from "next-auth"
+import { PrismaClient } from "@prisma/client"
 import CredentialsProvider from "next-auth/providers/credentials"
+import { isPasswordValid } from "@/utils/hash"
 
+const prisma = new PrismaClient()
 const handler = NextAuth({
+  secret: process.env.NEXTAUTH_SECRET,
+  pages: {
+    signIn: "/auth/signin",
+  },
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -9,17 +16,25 @@ const handler = NextAuth({
         username: { label: "Username", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password" }
       },
-      async authorize(credentials, req) {
-        const user = { id: "1", name: "J Smith", email: "jsmith@example.com" }
-        if (user) {
-          // Any object returned will be saved in `user` property of the JWT
-          return user
-        } else {
-          // If you return null then an error will be displayed advising the user to check their details.
+      async authorize(credentials: any) {
+        const email = credentials.email
+        const user = await prisma.user.findUnique({
+          where: { email: email }
+        })
+        if(!user) {
           return null
-
-          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
+
+        const isPasswordMatch = await isPasswordValid(credentials.password, user.password)
+        if(!isPasswordMatch) {
+          return null
+        }
+
+        return {
+          name: user.name,
+          email: user.email,
+        }
+
       }
     })
   ]
