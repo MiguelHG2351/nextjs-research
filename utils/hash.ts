@@ -1,9 +1,11 @@
-import { compare, hash } from 'bcrypt';
+import { compare, hashSync, genSaltSync } from 'bcrypt';
 
-const HASH = parseInt(process.env.PASSWORD_HASH!) || 10;
+const SALT = parseInt(process.env.PASSWORD_SALT!) || 10;
 
 export async function hashPassword(password: string) {
-  const passwordHash = await hash(password, HASH)
+  const salt = genSaltSync(SALT)
+  const passwordHash = hashSync(password, salt)
+
   return passwordHash;
 }
 

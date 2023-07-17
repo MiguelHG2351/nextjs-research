@@ -6,17 +6,18 @@ import { isPasswordValid } from "@/utils/hash"
 const prisma = new PrismaClient()
 const handler = NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
-  pages: {
-    signIn: "/auth/signin",
-  },
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
-        password: { label: "Password", type: "password" }
+        email: { label: "Email", type: "text", placeholder: "jsmith" },
+        password: { label: "Password", type: "password", placeholder: "Your pass" }
       },
-      async authorize(credentials: any) {
+      async authorize(credentials: {email: string, password: string}) {
+        if (!credentials?.email || !credentials.password) {
+          return null;
+        }
+        
         const email = credentials.email
         const user = await prisma.user.findUnique({
           where: { email: email }
@@ -31,10 +32,10 @@ const handler = NextAuth({
         }
 
         return {
+          id: user.id,
           name: user.name,
           email: user.email,
         }
-
       }
     })
   ]
