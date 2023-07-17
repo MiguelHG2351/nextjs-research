@@ -11,7 +11,7 @@ type Props = React.PropsWithChildren<{}>
 
 export const Providers = (props: Props) => {
   return (
-    <SessionProvider>
+    <SessionProvider basePath='/auth'>
       <ReduxProvider store={store}>
         {props.children}
       </ReduxProvider>

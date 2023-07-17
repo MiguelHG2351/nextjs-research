@@ -38,7 +38,12 @@ const handler = NextAuth({
         }
       }
     })
-  ]
+  ],
+  callbacks: {
+    async redirect({ baseUrl }) {
+      return baseUrl
+    },
+  }
 })
 
 export { handler as GET, handler as POST }
