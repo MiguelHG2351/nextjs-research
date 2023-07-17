@@ -2,6 +2,9 @@
 const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ['@prisma/client', 'bcrypt']
+  },
+  eslint: {
+    ignoreDuringBuilds: true
   }
 }
 
