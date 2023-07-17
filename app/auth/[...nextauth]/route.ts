@@ -13,7 +13,7 @@ const handler = NextAuth({
         email: { label: "Email", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password", placeholder: "Your pass" }
       },
-      async authorize(credentials: {email: string, password: string}) {
+      async authorize(credentials) {
         if (!credentials?.email || !credentials.password) {
           return null;
         }
@@ -35,7 +35,7 @@ const handler = NextAuth({
           id: user.id,
           name: user.name,
           email: user.email,
-        }
+        } as any
       }
     })
   ],
