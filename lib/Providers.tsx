@@ -10,8 +10,9 @@ import { store } from '@/lib/redux'
 type Props = React.PropsWithChildren<{}>
 
 export const Providers = (props: Props) => {
+  console.log(props)
   return (
-    <SessionProvider basePath='/auth'>
+    <SessionProvider>
       <ReduxProvider store={store}>
         {props.children}
       </ReduxProvider>
