@@ -10,7 +10,6 @@ import { store } from '@/lib/redux'
 type Props = React.PropsWithChildren<{}>
 
 export const Providers = (props: Props) => {
-  console.log(props)
   return (
     <SessionProvider>
       <ReduxProvider store={store}>
