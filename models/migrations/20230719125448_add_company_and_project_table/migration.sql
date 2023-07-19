@@ -1,0 +1,19 @@
+-- CreateTable
+CREATE TABLE "Company" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "name" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Project" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "name" TEXT NOT NULL,
+    "startingDate" DATETIME NOT NULL,
+    "endingDate" DATETIME NOT NULL,
+    "technologies" TEXT NOT NULL,
+    "budget" INTEGER NOT NULL,
+    "companyId" INTEGER NOT NULL,
+    CONSTRAINT "Project_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "Company" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
