@@ -15,3 +15,22 @@ model User {
   password  String
   salt      String
 }
+
+model Company {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  name      String
+  projects  Project[]
+}
+
+model Project {
+  id           Int      @id @default(autoincrement())
+  createdAt    DateTime @default(now())
+  name         String
+  startingDate DateTime
+  endingDate   DateTime
+  technologies String
+  budget       Int
+  companyId    Int
+  company      Company  @relation(fields: [companyId], references: [id])
+}
